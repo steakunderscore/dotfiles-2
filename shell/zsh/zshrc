@@ -33,3 +33,18 @@ SAVEHIST=1000000
 # show time a command took if over 4 sec
 export REPORTTIME=4
 export TIMEFMT="%*Es total, %U user, %S system, %P cpu"
+
+source /opt/boxen/env.sh
+
+# eval "$(boot2docker shellinit)"
+
+# if [[ $(uname) == Darwin ]]; then
+#   if [ -f "${HOME}/.gpg-agent-info" ]; then
+#     . "${HOME}/.gpg-agent-info"
+#     export GPG_AGENT_INFO
+#     export SSH_AUTH_SOCK
+#   fi
+# fi
+#
+# GPG_TTY=$(tty)
+# export GPG_TTY

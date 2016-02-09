@@ -13,6 +13,8 @@ Bundle 'bufkill.vim'
 " Visual
 Bundle 'dterei/VimBookmarking'
 Bundle 'Lokaltog/vim-powerline'
+" Bundle 'itchyny/lightline.vim'
+" TODO: https://github.com/itchyny/lightline.vim
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'airblade/vim-gitgutter'
 
@@ -28,7 +30,7 @@ Bundle 'bkad/CamelCaseMotion'
 
 " Navigation
 Bundle 'scrooloose/nerdtree'
-Bundle 'kien/ctrlp.vim'
+Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'jasoncodes/ctrlp-modified.vim'
 Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'ivalkeen/vim-ctrlp-tjump'
@@ -43,6 +45,7 @@ Bundle 'tpope/vim-haml'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-cucumber'
 
 " Git
 Bundle 'tpope/vim-fugitive'

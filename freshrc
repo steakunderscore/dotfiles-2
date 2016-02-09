@@ -13,7 +13,18 @@ fresh freshshell/fresh-open bin/fresh-open --bin
 
 # Config
 fresh-options --file
-  fresh config/\*
+  DOTFILES_DIR="$(dirname "$(readlink "$BASH_SOURCE")")"
+  LOCAL_CONFIG_FILES="$(find "$DOTFILES_DIR/config" -d 1 -type f)"
+  PREPARED_LINES="$(echo "$LOCAL_CONFIG_FILES" | sed "s|$DOTFILES_DIR/config/||")"
+
+  echo "$PREPARED_LINES" | while read line; do
+    # if [[ "$WORK" == 1 ]]; then
+    # fi
+    if ! echo "$line" | grep -q -e gemrc -e gitconfig; then
+      fresh "config/$line"
+    fi
+  done
+
   fresh jasoncodes/dotfiles config/inputrc
   fresh jasoncodes/dotfiles config/tmux.conf
   fresh jasoncodes/dotfiles config/psqlrc
@@ -79,6 +90,7 @@ fresh-options --file=~/.vimrc --marker=\"
   fresh jasoncodes/dotfiles vim/mappings/pasteboard.vim
   fresh jasoncodes/dotfiles vim/mappings/whitespace.vim --filter=filter_vundle_lines
   fresh jasoncodes/dotfiles vim/config/undo.vim
+  # fresh jasoncodes/dotfiles vim/config/tags.vim
   fresh jasoncodes/dotfiles vim/config/auto_mkdir.vim
   fresh jasoncodes/dotfiles vim/config/search.vim
   fresh jasoncodes/dotfiles vim/config/cursor.vim
@@ -90,6 +102,7 @@ fresh-options --file=~/.vimrc --marker=\"
   # Ruby autocommands
   fresh jasoncodes/dotfiles vim/plugins/ruby.vim --filter='sed -n 11,13p' --ref=da7d4a8
   fresh hackling/dotfiles vim/plugins/surround.vim --filter=filter_vundle_lines
+  fresh hackling/dotfiles vim/keybindings/filename-to-clipboard.vim
   fresh nathanaelkane/dotfiles vim/plugins/easymotion.vim
   fresh jasoncodes/dotfiles vim/config/completion.vim
 fresh-options
@@ -105,7 +118,7 @@ fresh jasoncodes/dotfiles shell/config/heroku.sh
 fresh jasoncodes/dotfiles shell/config/chruby.sh
 fresh jasoncodes/dotfiles shell/config/tmux.sh
 fresh jasoncodes/dotfiles shell/functions/realpath.sh
-fresh markryall/dotfiles shell/aliases/dvcs.sh
+# fresh markryall/dotfiles shell/aliases/dvcs.sh
 
 fresh shell/exports.sh
 fresh shell/aliases/\*
@@ -135,6 +148,7 @@ fresh-options --bin
   fresh garybernhardt/dotfiles bin/run-command-on-git-revisions
   fresh pengwynn/dotfiles bin/git-pr
   fresh pengwynn/dotfiles bin/mx
+  fresh sj26/git-buildkite git-buildkite
 fresh-options
 fresh sivel/speedtest-cli speedtest_cli.py --bin=~/bin/speedtest
 
